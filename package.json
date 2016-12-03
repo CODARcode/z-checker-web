@@ -1,0 +1,23 @@
+{
+  "name": "compressionVis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/hanqiguo/compressionvis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hanqiguo/compressionvis#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "msgpack-lite": "^0.1.26",
+    "ws": "^1.1.1"
+  }
+}
