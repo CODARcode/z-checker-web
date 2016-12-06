@@ -89,7 +89,7 @@ function executeDataPropertyAnalysis() {
 
   var results = {};
   results.properties = parseDataProperties(fs.readFileSync(outPropFile).toString());
-  results.fftAmp = parseFFTAmp(fs.readFileSync(outFFTFile).toString());
+  results.fftAmp = parseFFTAmp(fs.readFileSync(outFFTAmpFile).toString());
   results.autoCorr = parseAutoCorr(fs.readFileSync(outAutoCorrFile).toString());
 
   return results;
@@ -104,6 +104,16 @@ function executeDataPropertyAnalysis() {
   }
   
   function parseFFTAmp(d) {
+    var amp = parseCSVSync(d, {delimiter: ' ', comment: '#'});
+    amp.forEach(function(e) {
+      var substrs = e[0].split('/');
+      e[0] = parseInt(substrs[0]);
+      e[1] = parseFloat(e[1]);
+    });
+    return amp;
+  }
+  
+  function parseFFT(d) {
     var fft = parseCSVSync(d, {delimiter: ' ', comment: '#'});
     fft.forEach(function(e) {
       var substrs = e[0].split('/');

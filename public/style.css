@@ -1,0 +1,5 @@
+.svg text {
+  fill: black;
+  font-size: 12px;
+  text-anchor: end;
+}
