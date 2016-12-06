@@ -8,6 +8,7 @@ $("#requestProperties").on("click", function() {
 });
 
 function updateProperties(data) {
+  $("#dataProperties").html(JSON.stringify(data));
 }
 
 function updateFFTAmp(data) {
