@@ -95,12 +95,21 @@ function executeDataPropertyAnalysis() {
   return results;
 
   function parseDataProperties(d) {
-    var prop = ini.decode(d).PROPERTY;
-    Object.keys(prop).forEach(function(key) {
-      var val = parseInt(prop[key]);
-      if (val != NaN) prop[key] = val;
-    });
-    return prop;
+    var p = ini.decode(d).PROPERTY;
+    p.dataType = parseInt(p.dataType);
+    p.r1 = parseInt(p.r1);
+    p.r2 = parseInt(p.r2);
+    p.r3 = parseInt(p.r3);
+    p.r4 = parseInt(p.r4);
+    p.r5 = parseInt(p.r5);
+    p.numOfElem = parseInt(p.numOfElem);
+    p.minValue = parseFloat(p.minValue);
+    p.maxValue = parseFloat(p.maxValue);
+    p.valueRange = parseFloat(p.valueRange);
+    p.aveValue = parseFloat(p.avgValue);
+    p.entropy = parseFloat(p.entropy);
+    p.autocorr = parseFloat(p.autocorr);
+    return p;
   }
   
   function parseFFTAmp(d) {
