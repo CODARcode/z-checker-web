@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const ini = require("ini");
 const fs = require("fs");
+const parseCSVSync = require('csv-parse/lib/sync');
 const execFileSync = require('child_process').execFileSync;
 
 const ecWorkPath = "/Users/hguo/workspace/projects/ec-0.1.0/web";
@@ -89,6 +90,7 @@ function executeDataPropertyAnalysis() {
   var results = {};
   results.properties = parseDataProperties(fs.readFileSync(outPropFile).toString());
   results.fftAmp = parseFFTAmp(fs.readFileSync(outFFTFile).toString());
+  results.autoCorr = parseAutoCorr(fs.readFileSync(outAutoCorrFile).toString());
 
   return results;
 
@@ -102,8 +104,23 @@ function executeDataPropertyAnalysis() {
   }
   
   function parseFFTAmp(d) {
-    var fft = {};
+    var fft = parseCSVSync(d, {delimiter: ' ', comment: '#'});
+    fft.forEach(function(e) {
+      var substrs = e[0].split('/');
+      e[0] = parseInt(substrs[0]);
+      e[1] = parseFloat(e[1]);
+      e[2] = parseFloat(e[2]);
+    });
     return fft;
+  }
+
+  function parseAutoCorr(d) {
+    var corr = parseCSVSync(d, {delimiter: ' '});
+    corr.forEach(function(e) {
+      e[0] = parseInt(e[0]);
+      e[1] = parseFloat(e[1]);
+    });
+    return corr;
   }
 }
 
