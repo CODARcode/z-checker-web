@@ -1,4 +1,5 @@
-$("#requestProperties").on("click", function() {
+$(document).ready(function() {
+// $("#requestProperties").on("click", function() {
   d3.json("/query", function(d) {
     console.log(d);
     updateProperties(d.properties);
@@ -10,8 +11,8 @@ $("#requestProperties").on("click", function() {
 });
 
 function updateProperties(data) {
-  $("#dataProperties").html("<table id='dataPropertyTable'><thead><th>Property</th><th>Value</th></thead></table>");
-  var table = $("#dataPropertyTable");
+  $("#dataProperties").html("<table class='table table-striped table-bordered table-hover table-condensed' id='dataPropertyTable'><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table>");
+  var table = $("#dataPropertyTable tbody");
   for (var key in data) {
     table.append("<tr><td>" + key + "</td><td>" + data[key] + "</td></tr>");
   }
