@@ -4,6 +4,7 @@ const ini = require("ini");
 const fs = require("fs");
 const parseCSVSync = require('csv-parse/lib/sync');
 const execFileSync = require('child_process').execFileSync;
+const basicAuth = require("basic-auth-connect");
 
 const port = 8083;
 
@@ -22,6 +23,7 @@ const ecDataPropertyOutputDict = {
 };
 
 var app = express();
+app.use(basicAuth("ecp", "codar"));
 app.use(express.static("public"));
 
 var server = http.createServer(app);

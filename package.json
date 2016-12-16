@@ -16,6 +16,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/hanqiguo/compressionvis#readme",
   "dependencies": {
+    "basic-auth-connect": "^1.0.0",
     "csv": "^1.1.0",
     "csv-parse": "^1.1.7",
     "express": "^4.14.0",
