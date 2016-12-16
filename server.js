@@ -5,6 +5,8 @@ const fs = require("fs");
 const parseCSVSync = require('csv-parse/lib/sync');
 const execFileSync = require('child_process').execFileSync;
 
+const port = 8083;
+
 const ecWorkPath = "/Users/hguo/workspace/projects/ec-0.1.0/web";
 const ecConfigFile = "ec.config";
 const ecDataPropertyExecutable = "analyzeDataProperty";
@@ -23,7 +25,7 @@ var app = express();
 app.use(express.static("public"));
 
 var server = http.createServer(app);
-server.listen(8083);
+server.listen(port);
 
 app.get("/query", function(req, res, next) {
   res.writeHead(200, {"context-type": "application/json"});

@@ -2,6 +2,8 @@ $("#requestProperties").on("click", function() {
   d3.json("/query", function(d) {
     console.log(d);
     updateProperties(d.properties);
+    // var fftChart = new chart("fft");
+    // var autoCorr = new chart("autocorr");
     updateFFTAmp(d.fftAmp);
     updateAutoCorr(d.autoCorr);
   });
@@ -14,6 +16,12 @@ function updateProperties(data) {
     table.append("<tr><td>" + key + "</td><td>" + data[key] + "</td></tr>");
   }
 }
+
+function chart(name, json) {
+  $("#charts").append("<div class='chart' id='" + name + "'></div>");
+  $("#" + name).append(name);
+}
+
 
 function updateFFTAmp(data) {
   const W = 800, H = 150;

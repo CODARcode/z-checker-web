@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
+    <meta charset="utf-8">
+
     <title>compressionVis</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/dc.min.css">
@@ -10,13 +13,57 @@
     <script src="js/d3.v4.min.js"></script>
     <script src="js/d3-tip.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/highcharts.js"></script>
   </head>
 
   <body>
-    <div><button id="requestProperties">Request properties</button></div>
-    <div id="fftAmpChart"></div>
-    <div id="autoCorrChart"></div>
-    <div id="dataProperties"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">ECP Compressor Visualization Tool</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar affix">
+            <button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>
+            <div id="dataProperties"></div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChartDialog">Add a new chart</button>
+          <div id="fftAmpChart"></div>
+          <div id="autoCorrChart"></div>
+          <div id="charts"></div>
+
+          <hr>
+          <footer>
+            <p>&copy; Argonne National Labotatory</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <div id="addChartDialog" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add a new chart</h4>
+          </div>
+          <div class="modal-body">
+            <p>some text.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="charts.js"></script>
   </body>
