@@ -60,7 +60,7 @@ function executeECAnalysis() {
   execFileSync(
       ecWorkPath + "/" + ecDataPropertyExecutable, 
       [ecConfigFile, ecDataFile, ecDataDims[0], ecDataDims[1], ecDataDims[2]], 
-      {cwd: ecWorkPath}); // , stdio: [0, 1, 2]});
+      {cwd: ecWorkPath, stdio: [0, 1, 2]});
 
   const outPropFile = ecWorkPath + "/" + ecDataPropertyOutputPrefix + ecDataPropertyOutputDict["prop"];
   const outFFTFile = ecWorkPath + "/" + ecDataPropertyOutputPrefix + ecDataPropertyOutputDict["fft"];
@@ -124,5 +124,7 @@ function executeECAnalysis() {
 }
 
 module.exports = {
+  defaultEcConfig: defaultEcConfig,
+  ecConfigFile: ecConfigFile,
   execute: executeECAnalysis
 };

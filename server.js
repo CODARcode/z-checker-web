@@ -16,6 +16,7 @@ server.listen(port);
 app.get("/ec", function(req, res, next) {
   res.writeHead(200, {"context-type": "application/json"});
   var results = ec.execute();
+  var results1 = sz.execute();
   res.end(JSON.stringify(results));
 });
 
