@@ -1,15 +1,3 @@
-$(document).ready(function() {
-// $("#requestProperties").on("click", function() {
-  d3.json("/ec", function(d) {
-    console.log(d);
-    updateProperties(d.properties);
-    // var fftChart = new chart("fft");
-    // var autoCorr = new chart("autocorr");
-    updateFFTAmp(d.fftAmp);
-    updateAutoCorr(d.autoCorr);
-  });
-});
-
 function updateProperties(data) {
   $("#dataProperties").html("<table class='table table-striped table-bordered table-hover table-condensed' id='dataPropertyTable'><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody></tbody></table>");
   var table = $("#dataPropertyTable tbody");
