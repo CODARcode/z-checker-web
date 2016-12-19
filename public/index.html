@@ -25,19 +25,25 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
-          <div class="bs-sidebar affix">
-            <!--<button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>-->
-            <div id="dataProperties"></div>
-          </div>
+        <div class="col-md-2">
+          <h5>Data Properties</h5>
+          <!--<button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>-->
+          <div id="dataProperties"></div>
+        </div>
+        
+        <div class="col-md-2">
+          <h5>Comparison</h5>
+          <!--<button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>-->
+          <div id="comparison"></div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChartDialog">Add a new chart</button>
           <div id="fftAmpChart"></div>
           <div id="autoCorrChart"></div>
+          <div id="disChart"></div>
           <div id="charts"></div>
 
           <hr>
