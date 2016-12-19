@@ -20,3 +20,9 @@ app.get("/ec", function(req, res, next) {
   res.end(JSON.stringify(results));
 });
 
+app.get("/sz", function(req, res, next) {
+  res.writeHead(200, {"context-type": "application/json"});
+  var results = sz.execute();
+  res.end(JSON.stringify(results));
+});
+

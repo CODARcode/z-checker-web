@@ -9,9 +9,14 @@ const szConfigFile = "sz.config";
 const szCompDecompExecutable = "testfloat_CompDecomp";
 const szCompDecompOutputPrefix = "compareResults/sz(1E-6):testfloat.";
 const szDataDims = [8, 8, 128];
-const szDataName = '"sz(1E-6)"';
+const szDataName = "sz(1E-6)";
 const szVarName = "testfloat";
 const szDataFile = "testdata/x86/testfloat_8_8_128.dat";
+
+const szOutputDict = {
+  cmp: "cmp",
+  dis: "dis"
+};
 
 var defaultSzConfig = 
 { ENV: { dataEndianType: 'LITTLE_ENDIAN_DATA', sol_name: 'SZ' },
@@ -36,6 +41,33 @@ function executeSZAnalysis() {
       szWorkPath + "/" + szCompDecompExecutable,
       [szConfigFile, ec.ecConfigFile, szDataName, szVarName, szDataFile, szDataDims[0], szDataDims[1], szDataDims[2]], 
       {cwd: szWorkPath, stdio: [0, 1, 2]});
+ 
+  const outCompareFile = szWorkPath + "/" + szCompDecompOutputPrefix + szOutputDict["cmp"];
+  const outDisFile = szWorkPath + "/" + szCompDecompOutputPrefix + szOutputDict["dis"];
+
+  var results = {};
+  results.compare = parseCompare(fs.readFileSync(outCompareFile).toString());
+  results.dis = parseDis(fs.readFileSync(outDisFile).toString());
+ 
+  return results;
+
+  function parseCompare(d) {
+    var p = ini.decode(d).COMPARE;
+    for (var key in p) {
+      if (key != "varName") 
+        p[key] = parseFloat(p[key]);
+    }
+    return p;
+  }
+
+  function parseDis(d) {
+    var dis = parseCSVSync(d, {delimiter: ' ', comment: '#'});
+    dis.forEach(function(e) {
+      e[0] = parseFloat(e[0]);
+      e[1] = parseFloat(e[1]);
+    });
+    return dis;
+  }
 }
 
 module.exports = {
