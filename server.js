@@ -3,6 +3,7 @@ const http = require("http");
 const basicAuth = require("basic-auth-connect");
 const ec = require("./ec");
 const sz = require("./sz");
+const zfp = require("./zfp");
 
 const port = 8083;
 
@@ -26,3 +27,8 @@ app.get("/sz", function(req, res, next) {
   res.end(JSON.stringify(results));
 });
 
+app.get("/zfp", function(req, res, next) {
+  res.writeHead(200, {"context-type": "application/json"});
+  var results = zfp.execute();
+  res.end(JSON.stringify(results));
+});
