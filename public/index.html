@@ -25,64 +25,97 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-md-2">
-          <h5>Data Properties</h5>
-          <!--<button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>-->
-          <div id="dataProperties"></div>
+          <div class="bs-sidebar affix">
+            <form role="form">
+              <div class="form-group">
+
+                <label for="dataset">Dataset</label>
+                <select class="form-control">
+                  <option value="one">HACC</option>
+                  <option value="two">CESM</option>
+                  <option value="three">Test</option>
+                </select>
+
+                <label for="variable">Variable</label>
+                <select class="form-control">
+                  <option value="one">HACC</option>
+                  <option value="two">CESM</option>
+                  <option value="three">Test</option>
+                </select>
+
+                <label>Compressors</label>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">SZ</label>
+                  <button type="button" class="btn btn-default">Settings...</button>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">ZFP</label>
+                  <button type="button" class="btn btn-default">Settings...</button>
+                </div>
+
+                <label>Analyses</label>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">Data Properties</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">Compressor Reports</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">FFT</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">Autocorrelation</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">Distribution</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" checked="checked" value="">Distortion</label>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary">Run Analysis</button>
+            </form>
+          </div>
         </div>
-        
+
         <div class="col-md-2">
-          <h5>Comparison</h5>
-          <!--<button type="button" class="btn btn-primary" id="requestProperties">Request properties</button>-->
-          <div id="comparison"></div>
+          <div class="bs-sidebar affix">
+            <ul class="nav bs-sidenav-fixed">
+              <li><a href="#dp">Data Properties</a></li>
+              <li><a href="#sz">SZ Report</a></li>
+              <li><a href="#zfp">ZFP Report</a></li>
+              <li><a href="#comparison">Compressor Comparison</a></li>
+              <li><a href="#FFT">FFT</a></li>
+              <li><a href="#autocorr">Autocorrelation</a></li>
+              <li><a href="#distribution">Distribution</a></li>
+              <li><a href="#distortion">Distortion</a></li>
+            </ul>
+          </div>
         </div>
 
         <div class="col-md-8">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChartDialog">Add a new chart</button>
+          <h3 id="FFT">FFT</h3>
           <div id="fftAmpChart"></div>
+
+          <h3 id="autocorr">Autocorrelation</h3>
           <div id="autoCorrChart"></div>
+
+          <h3 id="distribution">Distribution</h3>
           <div id="disChart"></div>
-          <div id="charts"></div>
 
           <hr>
           <footer>
             <p>&copy; Argonne National Labotatory</p>
           </footer>
         </div>
+
       </div>
     </div>
 
-    <div id="addChartDialog" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add a new chart</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal">
-              <fieldset>
-                <div class="control-group">
-                  <label class="control-label">Type</label>
-                  <div class="controls">
-                    <select class="input-xlarge">
-                      <option>FFT Amplitude</option>
-                      <option>Auto Correlations</option>
-                    </select>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script src="master.js"></script>
     <script src="charts.js"></script>
