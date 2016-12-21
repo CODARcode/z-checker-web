@@ -1,8 +1,8 @@
 const ini = require("ini");
 const fs = require("fs");
-const parseCSVSync = require('csv-parse/lib/sync');
 const execFileSync = require('child_process').execFileSync;
 const ec = require("./ec");
+const parse = require("./parse");
 
 const szWorkPath = "/Users/hguo/workspace/projects/sz-1.4.6-beta/web";
 const szConfigFile = "sz.config";
@@ -46,28 +46,10 @@ function executeSZAnalysis() {
   const outDisFile = szWorkPath + "/" + szCompDecompOutputPrefix + szOutputDict["dis"];
 
   var results = {};
-  results.compare = parseCompare(fs.readFileSync(outCompareFile).toString());
-  results.dis = parseDis(fs.readFileSync(outDisFile).toString());
+  results.compare = parse.parseCompare(fs.readFileSync(outCompareFile).toString());
+  results.dis = parse.parseDistribution(fs.readFileSync(outDisFile).toString());
  
   return results;
-
-  function parseCompare(d) {
-    var p = ini.decode(d).COMPARE;
-    for (var key in p) {
-      if (key != "varName") 
-        p[key] = parseFloat(p[key]);
-    }
-    return p;
-  }
-
-  function parseDis(d) {
-    var dis = parseCSVSync(d, {delimiter: ' ', comment: '#'});
-    dis.forEach(function(e) {
-      e[0] = parseFloat(e[0]);
-      e[1] = parseFloat(e[1]);
-    });
-    return dis;
-  }
 }
 
 module.exports = {

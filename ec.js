@@ -1,7 +1,7 @@
 const ini = require("ini");
 const fs = require("fs");
-const parseCSVSync = require('csv-parse/lib/sync');
 const execFileSync = require('child_process').execFileSync;
+const parse = require("./parse");
 
 const ecWorkPath = "/Users/hguo/workspace/projects/ec-0.1.0/web";
 const ecConfigFile = "ec.config";
@@ -68,59 +68,11 @@ function executeECAnalysis() {
   const outAutoCorrFile = ecWorkPath + "/" + ecDataPropertyOutputPrefix + ecDataPropertyOutputDict["autocorr"];
 
   var results = {};
-  results.properties = parseDataProperties(fs.readFileSync(outPropFile).toString());
-  results.fftAmp = parseFFTAmp(fs.readFileSync(outFFTAmpFile).toString());
-  results.autoCorr = parseAutoCorr(fs.readFileSync(outAutoCorrFile).toString());
+  results.properties = parse.parseDataProperties(fs.readFileSync(outPropFile).toString());
+  results.fftAmp = parse.parseFFTAmp(fs.readFileSync(outFFTAmpFile).toString());
+  results.autoCorr = parse.parseAutoCorr(fs.readFileSync(outAutoCorrFile).toString());
 
   return results;
-
-  function parseDataProperties(d) {
-    var p = ini.decode(d).PROPERTY;
-    p.dataType = parseInt(p.dataType);
-    p.r1 = parseInt(p.r1);
-    p.r2 = parseInt(p.r2);
-    p.r3 = parseInt(p.r3);
-    p.r4 = parseInt(p.r4);
-    p.r5 = parseInt(p.r5);
-    p.numOfElem = parseInt(p.numOfElem);
-    p.minValue = parseFloat(p.minValue);
-    p.maxValue = parseFloat(p.maxValue);
-    p.valueRange = parseFloat(p.valueRange);
-    p.aveValue = parseFloat(p.avgValue);
-    p.entropy = parseFloat(p.entropy);
-    p.autocorr = parseFloat(p.autocorr);
-    return p;
-  }
-  
-  function parseFFTAmp(d) {
-    var amp = parseCSVSync(d, {delimiter: ' ', comment: '#'});
-    amp.forEach(function(e) {
-      var substrs = e[0].split('/');
-      e[0] = parseInt(substrs[0]);
-      e[1] = parseFloat(e[1]);
-    });
-    return amp;
-  }
-  
-  function parseFFT(d) {
-    var fft = parseCSVSync(d, {delimiter: ' ', comment: '#'});
-    fft.forEach(function(e) {
-      var substrs = e[0].split('/');
-      e[0] = parseInt(substrs[0]);
-      e[1] = parseFloat(e[1]);
-      e[2] = parseFloat(e[2]);
-    });
-    return fft;
-  }
-
-  function parseAutoCorr(d) {
-    var corr = parseCSVSync(d, {delimiter: ' '});
-    corr.forEach(function(e) {
-      e[0] = parseInt(e[0]);
-      e[1] = parseFloat(e[1]);
-    });
-    return corr;
-  }
 }
 
 module.exports = {
