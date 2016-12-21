@@ -1,14 +1,18 @@
 $(document).ready(function() {
-// $("#requestProperties").on("click", function() {
+});
+
+$("#run").on("click", function() {
+  $("#menu").html("");
+  $("#report").html("");
+
   d3.json("/ec", function(d) {
-    updateProperties(d.properties);
-    updateFFTAmp(d.fftAmp);
-    updateAutoCorr(d.autoCorr);
+    createTable("Data Properties", "dp", d.properties);
+    updateFFTAmp("Data FFT", "fft", d.fftAmp);
+    updateAutoCorr("Data Autocorrelation", "autocorr", d.autoCorr);
   });
 
   d3.json("/sz", function(d) {
-    updateComparison(d.compare);
-    updateDis(d.dis);
+    createTable("SZ Report", "sz", d.compare);
+    updateDistribution("SZ Distribution", "sz-dis", d.dis);
   });
 });
-

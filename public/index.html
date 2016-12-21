@@ -34,16 +34,13 @@
 
                 <label for="dataset">Dataset</label>
                 <select class="form-control">
-                  <option value="one">HACC</option>
-                  <option value="two">CESM</option>
-                  <option value="three">Test</option>
+                  <option value="cesm">CESM</option>
                 </select>
 
                 <label for="variable">Variable</label>
                 <select class="form-control">
-                  <option value="one">HACC</option>
-                  <option value="two">CESM</option>
-                  <option value="three">Test</option>
+                  <option value="CLDHGH">CLDHGH</option>
+                  <option value="PHIS">PHIS</option>
                 </select>
 
                 <label>Compressors</label>
@@ -77,14 +74,15 @@
                 </div>
               </div>
 
-              <button type="button" class="btn btn-primary">Run Analysis</button>
+              <button type="button" class="btn btn-primary" id="run">Run Analysis</button>
             </form>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="bs-sidebar affix">
-            <ul class="nav bs-sidenav-fixed">
+            <ul class="nav bs-sidenav-fixed" id="menu">
+              <!--
               <li><a href="#dp">Data Properties</a></li>
               <li><a href="#sz">SZ Report</a></li>
               <li><a href="#zfp">ZFP Report</a></li>
@@ -93,11 +91,13 @@
               <li><a href="#autocorr">Autocorrelation</a></li>
               <li><a href="#distribution">Distribution</a></li>
               <li><a href="#distortion">Distortion</a></li>
+              -->
             </ul>
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8" id="report">
+          <!--
           <h3 id="FFT">FFT</h3>
           <div id="fftAmpChart"></div>
 
@@ -111,6 +111,7 @@
           <footer>
             <p>&copy; Argonne National Labotatory</p>
           </footer>
+          -->
         </div>
 
       </div>
