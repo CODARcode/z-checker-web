@@ -15,4 +15,9 @@ $("#run").on("click", function() {
     createTable("SZ Report", "sz", d.compare);
     updateDistribution("SZ Distribution", "sz-dis", d.dis);
   });
+  
+  d3.json("/zfp", function(d) {
+    createTable("ZFP Report", "sz", d.compare);
+    updateDistribution("ZFP Distribution", "sz-dis", d.dis);
+  });
 });
