@@ -21,7 +21,7 @@ $("#run").on("click", function() {
     updateDistribution("ZFP Distribution", "zfp-dis", d.dis);
   });
   
-  d3.text("/static/rate-distortion_CLDLOW.txt", function(text){
+  d3.text("/static1/rate-distortion_CLDLOW.txt", function(text){
     var psv = d3.dsvFormat(" ");
     var data = psv.parse(text);
     var data1 = {sz: [], zfp: []}; // TODO
