@@ -18,7 +18,7 @@ $("#run").on("click", function() {
   
   d3.json("/zfp", function(d) {
     createTable("ZFP Report", "sz", d.compare);
-    updateDistribution("ZFP Distribution", "sz-dis", d.dis);
+    updateDistribution("ZFP Report", "sz-dis", d.dis);
   });
   
   d3.text("/static/rate-distortion_CLDLOW.txt", function(text){
