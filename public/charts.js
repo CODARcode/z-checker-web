@@ -36,6 +36,27 @@ function updateFFTAmp(title, id, data) {
   $("#"+id+"Chart").highcharts(json);
 }
 
+function updateRateDistortion(title, id, data) {
+  $("#menu").append("<li><a href='#"+id+"'>"+title+"</a></li>");
+  $("#report").append("<div id='"+id+"'><h3>"+title+"</h3><div id='"+id+"Chart'></div></div>");
+
+  console.log(data);
+  var json = {
+    title: {text: "Rate Distortion"},
+    xAxis: {
+    },
+    yAxis: {
+    },
+    series: [
+      {name: "sz", data: data.sz},
+      {name: "zfp", data: data.zfp}
+    ],
+    credits: {enabled: false}
+  };
+
+  $("#"+id+"Chart").highcharts(json);
+}
+
 function updateAutoCorr(title, id, data) {
   $("#menu").append("<li><a href='#"+id+"'>"+title+"</a></li>");
   $("#report").append("<div id='"+id+"'><h3>"+title+"</h3><div id='"+id+"Chart'></div></div>");
