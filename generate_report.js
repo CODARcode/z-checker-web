@@ -17,6 +17,8 @@ const input_path_cc = input_path + "/compareCompressors/gnuplot_scripts";
 const input_path_cc_data = input_path + rpath_cc;
 
 const dest_path = process.argv[2] + "/report/web";
+if (!fs.existsSync(dest_path))
+  fs.mkdirSync(dest_path);
 
 var svgFileMap = {}; // key: filename, value: full path
 
@@ -52,9 +54,9 @@ function generateSvgForZChecker(filename, cwd, rpath) { // filename: full path o
       return;
     else if (str.startsWith("set term")) {
       if (mode == "png") 
-        script += "set term png enh\n";
+        script += "set terminal png enh\n";
       else
-        script += "set term svg enh\n";
+        script += "set terminal svg enh\n";
     } else if (str.startsWith("set output"))
       // script += str.replace(/eps/g, "svg") + "\n"; // could lead to problem if the case name has svg
       script += 'set output "' + key + '.' + mode + '"\n';
