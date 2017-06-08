@@ -23,7 +23,7 @@ const dest_path = process.argv[2] + "/report/web";
 if (!fs.existsSync(dest_path))
   fs.mkdirSync(dest_path);
 
-// generateDataPropertiesTab();
+generateDataPropertiesTab();
 generateCompressionResultsTab();
 
 function generateDataPropertiesTab() {

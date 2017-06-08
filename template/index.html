@@ -1,6 +1,13 @@
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
+    <meta charset="utf-8">
+    <title>Z-checker</title>
+    
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    
     <script src="jquery-3.1.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <script src="crossfilter.js"></script>
     <script>
 
@@ -13,8 +20,8 @@ $(document).ready(function() {
   
     data.forEach(function(d) {
       $('<div class="dp_img" id="' + d.key + '"></div>')
-        .appendTo("#dataProperties")
-        .append("<p>" + d.key  + "</p>")
+        .appendTo(".dataProperties-contents")
+        .append("<h2>" + d.key  + "</h2>")
         .append('<img src="' + d.filename + '"/>');
     });
 
@@ -54,8 +61,8 @@ $(document).ready(function() {
   
     data.forEach(function(d) {
       $('<div class="cr_img" id="' + d.key + '"></div>')
-        .appendTo("#compressionResults")
-        .append("<p>" + d.key  + "</p>")
+        .appendTo(".compressionResults-contents")
+        .append("<h2>" + d.key  + "</h2>")
         .append('<img src="' + d.filename + '"/>');
     });
 
@@ -104,21 +111,61 @@ $(document).ready(function() {
     </script>
   </head>
   <body>
-    <div id="dataProperties">
-      <div class="filters">
-        <div class="dp_varnames">Varnames:<br></div>
-        <div class="dp_properties">Properties:<br></div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item active">
+        <a class="nav-link active" data-toggle="tab" href="#dataProperties" role="tab">Data Properties</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#compressionResults" role="tab">Compression Results</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#comparisonResults" role="tab">Comparison Results</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="dataProperties" role="tabpanel">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="bs-sidebar">
+              <div class="dp_varnames">
+                <label>Varnames:</label><br>
+              </div>
+              <div class="dp_properties">
+                <label>Properties:</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 dataProperties-contents">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="compressionResults" role="tabpanel">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="bs-sidebar">
+              <div class="cr_compressors">
+                <label>Compressors:</label><br>
+              </div>
+              <div class="cr_bounds">
+                <label>Error Bounds:</label><br>
+              </div>
+              <div class="cr_varnames">
+                <label>Varnames:</label><br>
+              </div>
+              <div class="cr_properties">
+                <label>Properties:</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 compressionResults-contents">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="comparisonResults" role="tabpanel">
       </div>
     </div>
-    <div id="compressionResults">
-      <div class="filters">
-        <div class="cr_compressors">Compressor:<br></div>
-        <div class="cr_bounds">Bound:<br></div>
-        <div class="cr_varnames">Varnames:<br></div>
-        <div class="cr_properties">Properties:<br></div>
-      </div>
-    </div>
-    <div id="comparisonResults">
-    </div>
+
   </body>
 </html>
