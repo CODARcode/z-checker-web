@@ -167,3 +167,5 @@ function generateFigureForZChecker(filename, cwd, rpath) { // filename: full pat
 fs.copySync("./template/index.html", dest_path + "/index.html");
 fs.copySync("./template/jquery-3.1.1.min.js", dest_path + "/jquery-3.1.1.min.js");
 fs.copySync("./template/crossfilter.js", dest_path + "/crossfilter.js");
+fs.copySync("./template/bootstrap.min.css", dest_path + "/bootstrap.min.css");
+fs.copySync("./template/bootstrap.min.js", dest_path + "/bootstrap.min.js");
