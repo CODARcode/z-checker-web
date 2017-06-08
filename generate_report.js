@@ -25,6 +25,7 @@ if (!fs.existsSync(dest_path))
 
 generateDataPropertiesTab();
 generateCompressionResultsTab();
+generateComparisonResultsTab();
 
 function generateDataPropertiesTab() {
   console.log("generating image files for dataProperties...");
@@ -109,14 +110,24 @@ function generateCompressionResultsTab() {
   fs.writeFileSync(dest_path + "/compressionResults.json", JSON.stringify(outputs));
 }
 
-/*
-console.log("generating files for compareCompressors...");
-var files_cc = glob.sync(input_path_cc + "/*.p");
-files_cc.forEach(function(f) {
-  var result = generateFigureForZChecker(f, input_path_cc_data, rpath_cc);
-  // svgFileMap[result.key] = result.svg;
-});
-*/
+function generateComparisonResultsTab() {
+  console.log("generating files for compareCompressors...");
+  
+  var outputs = [];
+  var files_cc = glob.sync(input_path_cc + "/*.p");
+  files_cc.forEach(function(f) {
+    var result = generateFigureForZChecker(f, input_path_cc_data, rpath_cc);
+    const key = result.key;
+
+    outputs.push({
+      key: key,
+      filename: result.filename
+    });
+  });
+  
+  fs.writeFileSync(dest_path + "/compareCompressors.json", JSON.stringify(outputs));
+}
+
 
 function generateFigureForZChecker(filename, cwd, rpath) { // filename: full path of .p file; cwd: working directory
   var buf = fs.readFileSync(filename).toString();

@@ -106,6 +106,19 @@ $(document).ready(function() {
       // console.log(byKey.top(Infinity));
     });
   });
+
+  $.getJSON("compareCompressors.json", function(data) {
+    console.log(data);
+    var cf = crossfilter(data);
+    var byKey = cf.dimension(function(d) {return d.key;});
+  
+    data.forEach(function(d) {
+      $('<div class="cr_img" id="' + d.key + '"></div>')
+        .appendTo(".comparisonResults-contents")
+        .append("<h2>" + d.key  + "</h2>")
+        .append('<img src="' + d.filename + '"/>');
+    });
+  });
 });
     
     </script>
@@ -163,7 +176,22 @@ $(document).ready(function() {
           </div>
         </div>
       </div>
+
       <div class="tab-pane" id="comparisonResults" role="tabpanel">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="bs-sidebar">
+              <div class="cp_type">
+                <label>Type:</label><br>
+              </div>
+              <div class="cp_variables">
+                <label>Variables:</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 comparisonResults-contents">
+          </div>
+        </div>
       </div>
     </div>
 
