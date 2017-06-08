@@ -7,7 +7,8 @@ const execFileSync = require('child_process').execFileSync;
 // var cheerio = require('cheerio');
 // var $ = cheerio.load(fs.readFileSync('./template/index.html')); // TODO
 
-const mode = "png"; 
+// const mode = "png"; 
+const mode = "svg"; 
 
 const rpath_dp = "/dataProperties";
 const rpath_cp = "/compressionResults";
