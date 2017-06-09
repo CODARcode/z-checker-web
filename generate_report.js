@@ -151,8 +151,11 @@ function generateFigureForZChecker(filename, cwd, rpath) { // filename: full pat
       return script += str + "\n";
   });
 
+  try {
   execFileSync("gnuplot", [], // arguments
       {cwd: cwd, stdio: ["pipe", 1, 2], input: script});
+  } catch (ex) {
+  }
       // {cwd: cwd, stdio: ["pipe", 1, "null"], input: script});
   
   const dest = dest_path + "/" + key + "." + mode;
